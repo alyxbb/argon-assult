@@ -11,6 +11,13 @@ public class player : MonoBehaviour {
     [Tooltip("in m")] [SerializeField] float ymin = -3f;
     [Tooltip("in m")] [SerializeField] float xmax = 7.5f;
     [Tooltip("in m")] [SerializeField] float ymax = 2.5f;
+
+    [SerializeField] float pitchfactor = -5f;
+    [SerializeField] float yawfactor = 5f;
+    [SerializeField] float throwpitchfactor = -10f;
+    [SerializeField] float throwyawfactor = 10f;
+    float xThrow;
+    float yThrow;
     // Use this for initialization
     void Start () {
 		
@@ -25,8 +32,8 @@ public class player : MonoBehaviour {
 
     private void Calculatemovement()
     {
-        float xThrow = CrossPlatformInputManager.GetAxis("Horizontal");
-        float yThrow = CrossPlatformInputManager.GetAxis("Vertical");
+        xThrow = CrossPlatformInputManager.GetAxis("Horizontal");
+        yThrow = CrossPlatformInputManager.GetAxis("Vertical");
 
         float xoffset = xThrow * xspeed * Time.deltaTime;
         float yoffset = yThrow * yspeed * Time.deltaTime;
@@ -41,6 +48,15 @@ public class player : MonoBehaviour {
     }
     private void Calculaterotation()
     {
-        transform.localRotation = Quaternion.Euler(-30f,30f,0f);
+        float xthrowtoyaw = xThrow * throwyawfactor;
+        float ythrowtopitch = yThrow * throwpitchfactor;
+
+        float xpostoyaw = transform.localPosition.x * yawfactor;
+        float ypostopitch = transform.localPosition.y * pitchfactor;
+
+        float pitch = ypostopitch + ythrowtopitch;
+        float yaw = xpostoyaw +xthrowtoyaw;
+        float roll = 0f;
+        transform.localRotation = Quaternion.Euler(pitch,yaw,roll);
     }
 }

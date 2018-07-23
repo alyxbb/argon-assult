@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.11931487, g: 0.1547136, b: 0.11833497, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -163,6 +163,10 @@ MonoBehaviour:
   ymin: -3
   xmax: 7.5
   ymax: 2.5
+  pitchfactor: -5
+  yawfactor: 5
+  throwpitchfactor: -10
+  throwyawfactor: 10
 --- !u!4 &588025367 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4984029953628714, guid: ab2371e94288d30469c15b449bb1abce,
