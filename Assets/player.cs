@@ -7,8 +7,12 @@ using UnityStandardAssets.CrossPlatformInput;
 public class player : MonoBehaviour {
     [Tooltip("in m/s")] [SerializeField] float xspeed = 4f;
     [Tooltip("in m/s")][SerializeField] float yspeed = 4f;
-	// Use this for initialization
-	void Start () {
+    [Tooltip("in m")] [SerializeField] float xmin = -4.5f;
+    [Tooltip("in m")] [SerializeField] float ymin = -3f;
+    [Tooltip("in m")] [SerializeField] float xmax = 7.5f;
+    [Tooltip("in m")] [SerializeField] float ymax = 2.5f;
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -16,11 +20,16 @@ public class player : MonoBehaviour {
 	void Update () {
         float xThrow = CrossPlatformInputManager.GetAxis("Horizontal");
         float yThrow = CrossPlatformInputManager.GetAxis("Vertical");
+
         float xoffset = xThrow * xspeed * Time.deltaTime;
         float yoffset = yThrow * yspeed * Time.deltaTime;
+
         float rawxpos = transform.localPosition.x + xoffset;
         float rawypos = transform.localPosition.y + yoffset;
 
-        transform.localPosition = new Vector3(rawxpos, rawypos, transform.localPosition.z);
+        float xpos = Mathf.Clamp(rawxpos, xmin, xmax);
+        float ypos = Mathf.Clamp(rawypos, ymin, ymax);
+
+        transform.localPosition = new Vector3(xpos,     ypos, transform.localPosition.z);
 	}
 }
