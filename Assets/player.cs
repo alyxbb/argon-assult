@@ -17,7 +17,14 @@ public class player : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
+        Calculatemovement();
+        Calculaterotation();
+    }
+
+    private void Calculatemovement()
+    {
         float xThrow = CrossPlatformInputManager.GetAxis("Horizontal");
         float yThrow = CrossPlatformInputManager.GetAxis("Vertical");
 
@@ -30,6 +37,10 @@ public class player : MonoBehaviour {
         float xpos = Mathf.Clamp(rawxpos, xmin, xmax);
         float ypos = Mathf.Clamp(rawypos, ymin, ymax);
 
-        transform.localPosition = new Vector3(xpos,     ypos, transform.localPosition.z);
-	}
+        transform.localPosition = new Vector3(xpos, ypos, transform.localPosition.z);
+    }
+    private void Calculaterotation()
+    {
+        transform.localRotation = Quaternion.Euler(-30f,30f,0f);
+    }
 }
