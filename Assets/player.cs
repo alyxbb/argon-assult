@@ -15,7 +15,8 @@ public class player : MonoBehaviour {
     [SerializeField] float pitchfactor = -5f;
     [SerializeField] float yawfactor = 5f;
     [SerializeField] float throwpitchfactor = -10f;
-    [SerializeField] float throwyawfactor = 10f;
+    [SerializeField] float throwrollfactor = -20;
+ 
     float xThrow;
     float yThrow;
     // Use this for initialization
@@ -25,7 +26,7 @@ public class player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update ()
-    {
+    { 
         Calculatemovement();
         Calculaterotation();
     }
@@ -48,15 +49,13 @@ public class player : MonoBehaviour {
     }
     private void Calculaterotation()
     {
-        float xthrowtoyaw = xThrow * throwyawfactor;
+    
         float ythrowtopitch = yThrow * throwpitchfactor;
-
-        float xpostoyaw = transform.localPosition.x * yawfactor;
         float ypostopitch = transform.localPosition.y * pitchfactor;
-
         float pitch = ypostopitch + ythrowtopitch;
-        float yaw = xpostoyaw +xthrowtoyaw;
-        float roll = 0f;
+
+        float yaw = transform.localPosition.x * yawfactor;
+        float roll = xThrow * throwrollfactor;
         transform.localRotation = Quaternion.Euler(pitch,yaw,roll);
     }
 }
