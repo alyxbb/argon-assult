@@ -18,5 +18,9 @@ public class player : MonoBehaviour {
         float yThrow = CrossPlatformInputManager.GetAxis("Vertical");
         float xoffset = xThrow * xspeed * Time.deltaTime;
         float yoffset = yThrow * yspeed * Time.deltaTime;
+        float rawxpos = transform.localPosition.x + xoffset;
+        float rawypos = transform.localPosition.y + yoffset;
+
+        transform.localPosition = new Vector3(rawxpos, rawypos, transform.localPosition.z);
 	}
 }
