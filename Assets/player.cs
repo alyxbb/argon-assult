@@ -13,8 +13,8 @@ public class player : MonoBehaviour {
     [Tooltip("in m")] [SerializeField] float ymax = 2.5f;
 
     [SerializeField] float pitchfactor = -5f;
-    [SerializeField] float yawfactor = 5f;
     [SerializeField] float throwpitchfactor = -10f;
+    [SerializeField] float yawfactor = 5f;
     [SerializeField] float throwrollfactor = -20;
  
     float xThrow;
