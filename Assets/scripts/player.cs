@@ -31,6 +31,11 @@ public class player : MonoBehaviour {
         Calculaterotation();
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        print("player triggered");
+    }
+  
     private void Calculatemovement()
     {
         xThrow = CrossPlatformInputManager.GetAxis("Horizontal");
