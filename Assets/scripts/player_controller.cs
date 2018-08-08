@@ -4,38 +4,43 @@ using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
 
-public class player : MonoBehaviour {
+public class player_controller : MonoBehaviour {
+    [Header("general")]
     [Tooltip("in m/s")] [SerializeField] float xspeed = 4f;
     [Tooltip("in m/s")][SerializeField] float yspeed = 4f;
-    [Tooltip("in m")] [SerializeField] float xmin = -4.5f;
-    [Tooltip("in m")] [SerializeField] float ymin = -3f;
-    [Tooltip("in m")] [SerializeField] float xmax = 7.5f;
-    [Tooltip("in m")] [SerializeField] float ymax = 2.5f;
+    [Header("border")]
+    [Tooltip("in m")] [SerializeField] float xmin = -3f;
+    [Tooltip("in m")] [SerializeField] float ymin = -2f;
+    [Tooltip("in m")] [SerializeField] float xmax = 6f;
+    [Tooltip("in m")] [SerializeField] float ymax = 1.5f;
 
+    [Header("position based")]
     [SerializeField] float pitchfactor = -5f;
-    [SerializeField] float throwpitchfactor = -10f;
     [SerializeField] float yawfactor = 5f;
+    [Header("throw based")]
+    [SerializeField] float throwpitchfactor = -10f;
     [SerializeField] float throwrollfactor = -20;
  
     float xThrow;
     float yThrow;
+
+    bool cancontrollship = true;
+
     // Use this for initialization
     void Start () {
 		
 	}
-	
-	// Update is called once per frame
-	void Update ()
-    { 
-        Calculatemovement();
-        Calculaterotation();
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (cancontrollship)
+        { 
+            Calculatemovement();
+            Calculaterotation();
+        }
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        print("player triggered");
-    }
-  
     private void Calculatemovement()
     {
         xThrow = CrossPlatformInputManager.GetAxis("Horizontal");
@@ -62,5 +67,9 @@ public class player : MonoBehaviour {
         float yaw = transform.localPosition.x * yawfactor;
         float roll = xThrow * throwrollfactor;
         transform.localRotation = Quaternion.Euler(pitch,yaw,roll);
+    }
+    void startdeathsequence()
+    {
+        cancontrollship = false;
     }
 }
