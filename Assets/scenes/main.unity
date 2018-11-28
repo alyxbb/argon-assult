@@ -164,6 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathfx: {fileID: 1566313441496076, guid: 429b1bccbcdb8934bbaa062478705b04, type: 2}
   parent: {fileID: 1071772540}
+  scoreperhit: 50
 --- !u!1001 &316138313
 Prefab:
   m_ObjectHideFlags: 0
@@ -328,6 +329,7 @@ GameObject:
   - component: {fileID: 683708728}
   - component: {fileID: 683708730}
   - component: {fileID: 683708729}
+  - component: {fileID: 683708731}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -392,6 +394,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 683708727}
+--- !u!114 &683708731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 683708727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b17597cbfc8c84438a0917eb9ab362a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &691676786 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1238095480485456, guid: bf374732b0ea2c34daa340dc2de7f746,
@@ -410,6 +423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathfx: {fileID: 1566313441496076, guid: 429b1bccbcdb8934bbaa062478705b04, type: 2}
   parent: {fileID: 1071772540}
+  scoreperhit: 50
 --- !u!1 &711465241
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,10 +646,10 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -905,6 +919,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathfx: {fileID: 1566313441496076, guid: 429b1bccbcdb8934bbaa062478705b04, type: 2}
   parent: {fileID: 1071772540}
+  scoreperhit: 100
 --- !u!1 &1358979176
 GameObject:
   m_ObjectHideFlags: 0
