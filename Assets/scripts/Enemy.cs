@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
 
-	// Use this for initialization
+    [SerializeField] GameObject deathfx;
+    [SerializeField] Transform parent;
+    
+    // Use this for initialization
 	void Start () {
         Addboxcollider();
         
@@ -24,6 +27,9 @@ public class Enemy : MonoBehaviour {
     
     void OnParticleCollision(GameObject other)
     {
+        GameObject fx = Instantiate(deathfx, transform.position, Quaternion.identity);
+        fx.transform.parent = parent;
+
         Destroy(gameObject);
     }
 }
