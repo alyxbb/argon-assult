@@ -7,6 +7,8 @@ public class collision_handler : MonoBehaviour {
 
     [SerializeField] float levelloaddelay = 1f;
     [SerializeField] GameObject deathFX;
+
+    bool isdead = false;
 	// Use this for initialization
 	void Start () {
 		
@@ -22,10 +24,13 @@ public class collision_handler : MonoBehaviour {
     }
     void startdeathsequence()
     {
-        SendMessage("startdeathsequence");
-        deathFX.SetActive(true);
-        Invoke("reloadscene", levelloaddelay);
-
+        if (!isdead)
+        {
+            isdead = true;
+            SendMessage("startdeathsequence");
+            deathFX.SetActive(true);
+            Invoke("reloadscene", levelloaddelay);
+        }
     }
 
     private void reloadscene()
