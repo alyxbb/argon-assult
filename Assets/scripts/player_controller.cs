@@ -20,6 +20,9 @@ public class player_controller : MonoBehaviour {
     [Header("throw based")]
     [SerializeField] float throwpitchfactor = -10f;
     [SerializeField] float throwrollfactor = -20;
+
+    [Header("gun")]
+    [SerializeField] GameObject[] guns;
  
     float xThrow;
     float yThrow;
@@ -38,6 +41,7 @@ public class player_controller : MonoBehaviour {
         { 
             Calculatemovement();
             Calculaterotation();
+            Calculatefiring();
         }
     }
 
@@ -68,6 +72,36 @@ public class player_controller : MonoBehaviour {
         float roll = xThrow * throwrollfactor;
         transform.localRotation = Quaternion.Euler(pitch,yaw,roll);
     }
+
+
+    private void Calculatefiring()
+    {
+        if (CrossPlatformInputManager.GetButton("Fire"))
+        {
+            Activate_guns();
+        }
+        else
+        {
+            Deactivate_guns();
+        }
+    }
+
+    private void Activate_guns()
+    {
+        foreach (GameObject gun in guns)
+        {
+            gun.SetActive(true);
+        }
+    }
+
+    private void Deactivate_guns()
+    {
+        foreach (GameObject gun in guns)
+        {
+            gun.SetActive(false);
+        }
+    }
+
     void startdeathsequence()
     {
         cancontrollship = false;
